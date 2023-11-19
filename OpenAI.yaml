@@ -1,8 +1,8 @@
 openapi: 3.0.0
 
 info:
-    title: Get Information from Dehashed
-    description: Get Information from Dehashed
+    title: Get Information from DH Database
+    description: Get Information from DH Database for a paritcurlar email address
     version: "v1"
 
 servers:
@@ -11,8 +11,8 @@ servers:
 paths:
     /search?query={email}:
         get:
-            operationId: getDehashed
-            summary: Get Dehashed Information for a particular email address.
+            operationId: getDHDB
+            summary: Get DH Information for a particular email address.
             parameters:
                 - in: path
                   name: email
@@ -26,11 +26,11 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/getDehashedResponse"
+                                $ref: "#/components/schemas/getDHResponse"
 
 components:
     schemas:
-        getDeHashedResponse:
+        getDHResponse:
             type: object
             properties:
                 balance:
