@@ -1,0 +1,54 @@
+openapi: 3.0.0
+
+info:
+    title: Get Information from DH Database
+    description: Get Information from DH Database for a paritcurlar email address
+    version: "v1"
+
+servers:
+    - url: https://api.dehashed.com/
+
+paths:
+    /search?query={email}:
+        get:
+            operationId: getDHDB
+            summary: Get DH Information for a particular email address.
+            parameters:
+                - in: path
+                  name: email
+                  schema:
+                      type: string
+                  required: true
+                  description: The email address to lookup              
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/getDHResponse"
+
+components:
+    schemas:
+        getDHResponse:
+            type: object
+            properties:
+                balance:
+                    type: integer
+                entries:
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                            id:
+                                type: string
+                                description: The id
+                            email:
+                                type: string
+                                description: The email
+                            ip_address:
+                                type: string
+                                description: The ip address
+                            database_name:
+                                type: string
+                                description: the database name
