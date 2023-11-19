@@ -30,7 +30,7 @@ paths:
 
 components:
     schemas:
-        getLeakedPasswordsResponse:
+        getDeHashedResponse:
             type: object
             properties:
                 balance:
@@ -49,27 +49,6 @@ components:
                             ip_address:
                                 type: string
                                 description: The ip address
-                            username:
-                                type: string
-                                description: The username
-                            password:
-                                type: string
-                                description: The password
-                            hashed_password:
-                                type: string
-                                description: The hashed password
-                            name:
-                                type: string
-                                description: The name
-                            vin:
-                                type: string
-                                description: The vin
-                            address:
-                                type: string
-                                description: The address
-                            phone:
-                                type: string
-                                description: phone
                             database_name:
                                 type: string
                                 description: the database name
