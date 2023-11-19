@@ -1,0 +1,86 @@
+openapi: 3.0.0
+
+info:
+    title: Lookup Leaked Passwords from Dehashed
+    description: Lookup Leaked Passwords from Dehashed
+    version: "v1"
+
+servers:
+    - url: https://api.dehashed.com/
+
+paths:
+    /search/{email}:
+        get:
+            operationId: getLeakedPasswords
+            summary: Lookup Leaked Password
+            parameters:
+                - in: path 
+                name: user
+                schema:
+                    type: string
+                required: true
+                - in: path
+                name: passwd 
+                schema:
+                    type: string
+                required: true
+                - in: path
+                  name: email
+                  schema:
+                      type: string
+                  required: true
+                  description: The email address to lookup
+                  
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/getLeakedPasswordsResponse"
+
+components:
+    schemas:
+        getLeakedPasswordsResponse:
+            type: object
+            properties:
+                balance:
+                    type: integer
+                entries:
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                            id:
+                                type: string
+                                description: The id
+                            email:
+                                type: string
+                                description: The email
+                            ip_address:
+                                type: string
+                                description: The ip address
+                            username:
+                                type: string
+                                description: The username
+                            password:
+                                type: string
+                                description: The password
+                            hashed_password:
+                                type: string
+                                description: The hashed password
+                            name:
+                                type: string
+                                description: The name
+                            vin:
+                                type: string
+                                description: The vin
+                            address:
+                                type: string
+                                description: The address
+                            phone:
+                                type: string
+                                description: phone
+                            database_name:
+                                type: string
+                                description: the database name
