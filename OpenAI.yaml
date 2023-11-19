@@ -1,7 +1,8 @@
 openapi: 3.0.0
+
 info:
-    title: Lookup Leaked Passwords from Dehashed
-    description: Lookup Leaked Passwords from Dehashed
+    title: Get Information from Dehashed
+    description: Get Information from Dehashed
     version: "v1"
 
 servers:
@@ -10,8 +11,8 @@ servers:
 paths:
     /search?query={email}:
         get:
-            operationId: getLeakedPasswords
-            summary: Lookup Leaked Password
+            operationId: getDehashed
+            summary: Get Dehashed Information for a particular email address.
             parameters:
                 - in: path
                   name: email
@@ -25,7 +26,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/getLeakedPasswordsResponse"
+                                $ref: "#/components/schemas/getDehashedResponse"
 
 components:
     schemas:
