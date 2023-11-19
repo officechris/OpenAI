@@ -14,23 +14,22 @@ paths:
             operationId: getLeakedPasswords
             summary: Lookup Leaked Password
             parameters:
-                - in: path 
-                name: user
-                schema:
-                    type: string
-                required: true
-                - in: path
-                name: passwd 
-                schema:
-                    type: string
-                required: true
                 - in: path
                   name: email
                   schema:
                       type: string
                   required: true
-                  description: The email address to lookup
-                  
+                  description: The email address to lookup 
+                - in: path
+                  name: user
+                  schema:
+                      type: string
+                  required: true
+                - in: path
+                  name: passwd
+                  schema:
+                      type: string
+                  required: true               
             responses:
                 "200":
                     description: OK
