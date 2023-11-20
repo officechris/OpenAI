@@ -1,0 +1,37 @@
+openapi: 3.0.0
+
+info:
+    title: Lookup IP Address Information from AbuseIPDB
+    description: Lookup IP Address Information from AbuseIPDB
+    version: "v1"
+
+servers:
+    - url: https://api.abuseipdb.com/api/v2
+
+paths:
+    /reports:
+        get:
+            operationId: getAbuseIPDBInformation
+            summary: Lookup IP Address reputation information from AbuseIPDB
+            parameters:
+                - in: path
+                  name: ipAddress
+                  schema:
+                      type: string
+                  required: true
+                  description: The ip address to lookup
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/getAbuseIPDBInformationResponse"
+
+components:
+    schemas:
+        getAbuseIPDBInformationResponse:
+            type: object
+            properties:
+                data:
+                    type: object
