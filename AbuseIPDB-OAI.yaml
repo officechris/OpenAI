@@ -9,12 +9,12 @@ servers:
     - url: https://api.abuseipdb.com/api/v2
 
 paths:
-    /reports?ipAddress={ipAddress}:
+    /reports:
         get:
             operationId: getAbuseIPDBInformation
             summary: Lookup IP Address reputation information from AbuseIPDB
             parameters:
-                - in: path
+                - in: query
                   name: ipAddress
                   schema:
                       type: string
