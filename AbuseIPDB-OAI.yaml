@@ -1,0 +1,80 @@
+openapi: 3.0.0
+
+info:
+    title: Lookup IP Address Geolocation
+    description: Lookup IP Address Geolocation
+    version: "v1"
+
+servers:
+    - url: https://prod-09.canadacentral.logic.azure.com:443/workflows/1552e3ba615848d5aa5385c9a10d258d/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=8kvS8eP1eWr9TTNEPRyD_VVVBZ7Po_tgI8mL-NUWiZc
+
+paths:
+    &ipAddress={ipaddress}:
+        get:
+            operationId: getAbuseIPDBInformation
+            summary: Lookup IP Address reputation information from AbuseIPDB
+            parameters:
+                - in: path
+                  name: ipaddress
+                  schema:
+                      type: string
+                  required: true
+                  description: The ip address to lookup
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/getAbuseIPDBInformationResponse"
+
+components:
+    schemas:
+        getAbuseIPDBInformationResponse:
+            type: object
+            properties:
+                data:
+                    type: object
+                    properties:
+                        ipAddress:
+                            type: string
+                            description: The IP address
+                        isPublic:
+                            type: number
+                            description: Is IP Public
+                        ipVersion:
+                            type: number
+                            description: The IP Version
+                        isWhitelisted:
+                            type: boolean
+                            description: Is the IP Whitelisted
+                        abuseConfidenceScore:
+                            type: integer
+                            description: IP's abuse confidence score
+                        countryCode:
+                            type: string
+                            description: The IP country code
+                        usageType:
+                            type: string
+                            description: The IP Usage Type
+                        isp:
+                            type: string
+                            description: The ISP
+                        domain:
+                            type: string
+                            description: The domain
+                        hostnames:
+                            type: array
+                            description: The hostnames
+                        isTor:
+                            type: boolean
+                            description: Is IP TOR Exit node
+                        totalReports:
+                            type: integer
+                            description: Total IP Abuse Reports
+                        numDistinctUsers:
+                            type: integer
+                            description: Number of distinct users
+                        lastReportedAt:
+                            type: string
+                            description: Last reported date
