@@ -16,21 +16,9 @@ paths:
           tags:
           - Incidents
           operationId: createIncident
-          description: |
-            Create an incident synchronously without a corresponding event from a monitoring service.
-
-            An incident represents a problem or an issue that needs to be addressed and resolved.
-
-            For more information see the [API Concepts Document](../../api-reference/ZG9jOjI3NDc5Nzc-api-concepts#incidents)
-
-            Scoped OAuth requires: `incidents.write`
-
-            This API operation has operation specific rate limits. See the [Rate Limits](https://developer.pagerduty.com/docs/72d3b724589e3-rest-api-rate-limits) page for more information.
+          description: Create an incident synchronously without a corresponding event from a monitoring service.
           summary: Create an Incident
           parameters:
-          - "$ref": "#/components/parameters/header_Accept"
-          - "$ref": "#/components/parameters/header_Content-Type"
-          - "$ref": "#/components/parameters/from_header"
           requestBody:
             content:
               application/json:
@@ -49,10 +37,6 @@ paths:
                           type: string
                           description: A succinct description of the nature, symptoms, cause,
                             or effect of the incident.
-                        service:
-                          "$ref": "#/components/schemas/ServiceReference"
-                        priority:
-                          "$ref": "#/components/schemas/PriorityReference"
                         urgency:
                           type: string
                           description: The urgency of the incident
@@ -67,50 +51,22 @@ paths:
                             requests referencing the same service and with the same incident_key
                             will result in those requests being rejected if an open incident
                             matches that incident_key.
-                        assignments:
-                          type: array
-                          description: Assign the incident to these assignees. Cannot be specified
-                            if an escalation policy is given.
-                          items:
-                            properties:
-                              assignee:
-                                "$ref": "#/components/schemas/UserReference"
-                        escalation_policy:
-                          "$ref": "#/components/schemas/EscalationPolicyReference"
-                        conference_bridge:
-                          "$ref": "#/components/schemas/ConferenceBridge"
                       required:
                       - type
                       - title
                       - service
                   required:
                   - incident
-                examples:
-                  request:
-                    summary: Request Example
-                    value:
-                      incident:
-                        type: incident
-                        title: The server is on fire.
-                        service:
-                          id: PWIXJZS
-                          type: service_reference
-                        priority:
-                          id: P53ZZH5
-                          type: priority_reference
-                        urgency: high
-                        incident_key: baf7cf21b1da41b4b0221008339ff357
-                        body:
-                          type: incident_body
-                          details: A disk is getting full on this machine. You should investigate
-                            what is causing the disk to fill, and ensure that there is an
-                            automated process in place for ensuring data is rotated (eg. logs
-                            should have logrotate around them). If data is expected to stay
-                            on this disk forever, you should start planning to scale up to
-                            a larger disk.
-                        escalation_policy:
-                          id: PT20YPA
-                          type: escalation_policy_reference
+          components:
+            schemas:
+                IncidentBody:
+                  type: object
+                  properties:
+                    details:
+                      type: object
+                      description: Additional incident details.
+                  required:
+                  - type
           responses:
             '201':
               description: The incident object created.
@@ -118,79 +74,3 @@ paths:
                 application/json:
                   schema:
                     type: object
-                    properties:
-                      incident:
-                        "$ref": "#/components/schemas/Incident"
-                    required:
-                    - incident
-                  examples:
-                    response:
-                      summary: Response Example
-                      value:
-                        incident:
-                          id: PT4KHLK
-                          type: incident
-                          title: The server is on fire.
-                          summary: "[#1234] The server is on fire."
-                          self: https://api.pagerduty.com/incidents/PT4KHLK
-                          html_url: https://subdomain.pagerduty.com/incidents/PT4KHLK
-                          incident_number: 1234
-                          created_at: '2015-10-06T21:30:42Z'
-                          updated_at: '2015-10-06T21:40:23Z'
-                          status: triggered
-                          incident_key: baf7cf21b1da41b4b0221008339ff357
-                          service:
-                            id: PWIXJZS
-                            type: service_reference
-                            summary: My Mail Service
-                            self: https://api.pagerduty.com/services/PWIXJZS
-                            html_url: https://subdomain.pagerduty.com/service-directory/PWIXJZS
-                          priority:
-                            id: P53ZZH5
-                            type: priority_reference
-                            summary: P2
-                            self: https://api.pagerduty.com/priorities/P53ZZH5
-                          assigned_via: escalation_policy
-                          assignments:
-                          - at: '2015-11-10T00:31:52Z'
-                            assignee:
-                              id: PXPGF42
-                              type: user_reference
-                              summary: Earline Greenholt
-                              self: https://api.pagerduty.com/users/PXPGF42
-                              html_url: https://subdomain.pagerduty.com/users/PXPGF42
-                          resolved_at:
-                          last_status_change_at: '2015-10-06T21:38:23Z'
-                          last_status_change_by:
-                            id: PXPGF42
-                            type: user_reference
-                            summary: Earline Greenholt
-                            self: https://api.pagerduty.com/users/PXPGF42
-                            html_url: https://subdomain.pagerduty.com/users/PXPGF42
-                          first_trigger_log_entry:
-                            id: Q02JTSNZWHSEKV
-                            type: trigger_log_entry_reference
-                            summary: Triggered through the API
-                            self: https://api.pagerduty.com/log_entries/Q02JTSNZWHSEKV?incident_id=PT4KHLK
-                            html_url: https://subdomain.pagerduty.com/incidents/PT4KHLK/log_entries/Q02JTSNZWHSEKV
-                          escalation_policy:
-                            id: PT20YPA
-                            type: escalation_policy_reference
-                            summary: Another Escalation Policy
-                            self: https://api.pagerduty.com/escalation_policies/PT20YPA
-                            html_url: https://subdomain.pagerduty.com/escalation_policies/PT20YPA
-                          teams:
-                          - id: PQ9K7I8
-                            type: team_reference
-                            summary: Engineering
-                            self: https://api.pagerduty.com/teams/PQ9K7I8
-                            html_url: https://subdomain.pagerduty.com/teams/PQ9K7I8
-                          urgency: high
-            '400':
-              "$ref": "#/components/responses/ArgumentError"
-            '401':
-              "$ref": "#/components/responses/Unauthorized"
-            '403':
-              "$ref": "#/components/responses/Forbidden"
-            '429':
-              "$ref": "#/components/responses/TooManyRequests"
