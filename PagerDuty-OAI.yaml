@@ -12,6 +12,14 @@ paths:
       operationId: createIncident
       description: Create an incident in pager duty with a specific title
       summary: Create an Incident
+      parameters:
+        - in: header
+          name: From
+          schema:
+              type: string
+              required: true
+              enum:
+                - officechris@gmail.com
       requestBody:
         required: true
         content:
