@@ -1,8 +1,10 @@
 ---
 openapi: 3.0.0
 info:
-  title: Create a new incident through a POST request to the Pager Duty API with a specific title.
-  description: Generate a JSON Payload for a POST request to the Pager Duty API which will have a new incident created with a specific title.
+  title: Create a new incident through a POST request to the Pager Duty API with a
+    specific title.
+  description: Generate a JSON Payload for a POST request to the Pager Duty API
+    which will have a new incident created with a specific title.
   version: v1
 servers:
   - url: https://api.pagerduty.com
@@ -39,7 +41,8 @@ paths:
                       type: string
                       description: The specific title or summary of the incident
                       required: true
-                      example: Investigation of Windows Print Spooler Remote Code Execution Vulnerability (CVE-2021-34527)
+                      example: Investigation of Windows Print Spooler Remote Code Execution
+                        Vulnerability (CVE-2021-34527)
                     service:
                       type: object
                       properties:
@@ -53,6 +56,23 @@ paths:
                           required: true
                           description: The incident type is always service_reference
                           default: service_reference
+                body:
+                  type: object
+                  required: true
+                  properties:
+                    type:
+                      type: string
+                      required: true
+                      default: incident_body
+                    details:
+                      type: string
+                      required: true
+                      example: Investigation into CVE-2021-34527, a high-severity vulnerability in the
+                        Windows Print Spooler service. All versions of Microsoft
+                        Windows are susceptible. No specific threat actors
+                        associated at this time. Mitigations include applying
+                        security updates, disabling the Print Spooler service,
+                        and regular monitoring.
       responses:
         "201":
           description: The incident object created.
