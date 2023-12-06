@@ -28,6 +28,7 @@ paths:
                   properties:
                     type:
                       type: string
+                      required: true
                       enum:
                         - incident
                     title:
