@@ -15,8 +15,7 @@ paths:
       parameters:
         - in: header
           name: From
-          schema:
-              type: string
+          type: string
           required: true
           description: From e-mail address will always be officechris@gmail.com
           enum:
