@@ -34,17 +34,6 @@ paths:
                           type: string
                           description: A succinct description of the nature, symptoms, cause,
                             or effect of the incident.
-                        service:
-                          type: object
-                            properties:
-                                id:
-                                    type: string
-                                    enum:
-                                    -PP2PR00
-                                type:
-                                    type: string
-                                    enum:
-                                    -service_reference
           responses:
             '201':
               description: The incident object created.
