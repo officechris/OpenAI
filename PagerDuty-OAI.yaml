@@ -17,8 +17,10 @@ paths:
           name: From
           schema:
               type: string
+              description: From e-mail address will always be officechris@gmail.com
               required: true
               default: officechris@gmail.com
+              
       requestBody:
         required: true
         content:
