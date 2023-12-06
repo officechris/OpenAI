@@ -67,12 +67,7 @@ paths:
                     details:
                       type: string
                       required: true
-                      example: Investigation into CVE-2021-34527, a high-severity vulnerability in the
-                        Windows Print Spooler service. All versions of Microsoft
-                        Windows are susceptible. No specific threat actors
-                        associated at this time. Mitigations include applying
-                        security updates, disabling the Print Spooler service,
-                        and regular monitoring.
+                      example: Investigation into CVE-2021-34527, a high-severity vulnerability in the Windows Print Spooler service.
       responses:
         "201":
           description: The incident object created.
