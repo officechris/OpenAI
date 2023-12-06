@@ -18,8 +18,7 @@ paths:
           schema:
               type: string
               required: true
-              enum:
-                - officechris@gmail.com
+              default: officechris@gmail.com
       requestBody:
         required: true
         content:
