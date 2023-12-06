@@ -44,6 +44,7 @@ paths:
                       type: string
                       description: The specific title or summary of the incident
                       required: true
+                      example: Investigation of Windows Print Spooler Remote Code Execution Vulnerability (CVE-2021-34527)
                     service:
                       type: object
                       properties:
