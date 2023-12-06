@@ -1,8 +1,8 @@
 ---
 openapi: 3.0.0
 info:
-  title: Create Pager Duty Incident
-  description: Create Pager Duty Incident
+  title: Create an incident in pager duty with a specific title
+  description: Plugin to create an incident in pager duty with a specific title
   version: v1
 servers:
   - url: https://api.pagerduty.com
@@ -10,8 +10,7 @@ paths:
   /incidents:
     post:
       operationId: createIncident
-      description: Create an incident synchronously without a corresponding event from
-        a monitoring service.
+      description: Create an incident in pager duty with a specific title
       summary: Create an Incident
       parameters: null
       requestBody:
@@ -33,20 +32,21 @@ paths:
                         - incident
                     title:
                       type: string
-                      description: A succinct description of the nature, symptoms, cause, or effect of
-                        the incident.
+                      description: A specific title of an incident
                       required: true
                     service:
                       type: object
                       properties:
                         id:
                           type: string
+                          description: The incident service id is always PP2PR00
                           required: true
                           enum:
                             - PP2PR00
                         type:
                           type: string
                           required: true
+                          description: The incident type is always service_reference
                           enum:
                             - service_reference
       responses:
