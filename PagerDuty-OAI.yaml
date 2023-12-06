@@ -21,7 +21,8 @@ paths:
           description: From e-mail address will always be officechris@gmail.com
           enum:
                - officechris@gmail.com
-          default: officechris@gmail.com        
+          default: officechris@gmail.com
+          example: officechris@gmail.com
       requestBody:
         required: true
         content:
@@ -38,6 +39,7 @@ paths:
                       required: true
                       enum:
                         - incident
+                      example: incident
                     title:
                       type: string
                       description: The specific title or summary of the incident
@@ -51,12 +53,14 @@ paths:
                           required: true
                           enum:
                             - PP2PR00
+                          example: PP2PR00
                         type:
                           type: string
                           required: true
                           description: The incident type is always service_reference
                           enum:
                             - service_reference
+                          example: service_reference
       responses:
         "201":
           description: The incident object created.
