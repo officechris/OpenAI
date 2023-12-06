@@ -19,6 +19,8 @@ paths:
               type: string
               description: From e-mail address will always be officechris@gmail.com
               required: true
+              enum:
+                        - officechris@gmail.com
               default: officechris@gmail.com
               
       requestBody:
