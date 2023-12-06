@@ -17,8 +17,8 @@ paths:
           name: From
           schema:
               type: string
-              description: From e-mail address will always be officechris@gmail.com
               required: true
+              description: From e-mail address will always be officechris@gmail.com
               enum:
                         - officechris@gmail.com
               default: officechris@gmail.com
