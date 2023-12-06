@@ -12,7 +12,6 @@ paths:
       operationId: createIncident
       description: Create an incident in pager duty with a specific title
       summary: Create an Incident
-      parameters: null
       requestBody:
         required: true
         content:
