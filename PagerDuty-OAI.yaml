@@ -11,14 +11,11 @@ servers:
 paths:
     /incidents:
         post:
-          x-pd-requires-scope: incidents.write
-          x-pd-operation-limit: true
-          tags:
-          - Incidents
           operationId: createIncident
           description: Create an incident synchronously without a corresponding event from a monitoring service.
           summary: Create an Incident
           parameters:
+
           requestBody:
             content:
               application/json:
@@ -37,36 +34,17 @@ paths:
                           type: string
                           description: A succinct description of the nature, symptoms, cause,
                             or effect of the incident.
-                        urgency:
-                          type: string
-                          description: The urgency of the incident
-                          enum:
-                          - high
-                          - low
-                        body:
-                          "$ref": "#/components/schemas/IncidentBody"
-                        incident_key:
-                          type: string
-                          description: A string which identifies the incident. Sending subsequent
-                            requests referencing the same service and with the same incident_key
-                            will result in those requests being rejected if an open incident
-                            matches that incident_key.
-                      required:
-                      - type
-                      - title
-                      - service
-                  required:
-                  - incident
-          components:
-            schemas:
-                IncidentBody:
-                  type: object
-                  properties:
-                    details:
-                      type: object
-                      description: Additional incident details.
-                  required:
-                  - type
+                        service:
+                          type: object
+                            properties:
+                                id:
+                                    type: string
+                                    enum:
+                                    -PP2PR00
+                                type:
+                                    type: string
+                                    enum:
+                                    -service_reference
           responses:
             '201':
               description: The incident object created.
