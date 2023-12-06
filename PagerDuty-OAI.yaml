@@ -11,7 +11,7 @@ paths:
     post:
       operationId: createIncident
       description: Create an incident in pager duty with a specific title
-      summary: Create an Incident
+      summary: Create an incident in pager duty with a specific title
       parameters:
         - in: header
           name: From
@@ -31,7 +31,6 @@ paths:
               properties:
                 incident:
                   type: object
-                  description: Details of the incident to be created.
                   required: true
                   properties:
                     type:
@@ -41,7 +40,7 @@ paths:
                         - incident
                     title:
                       type: string
-                      description: A specific title of an incident
+                      description: The specific title or summary of the incident
                       required: true
                     service:
                       type: object
