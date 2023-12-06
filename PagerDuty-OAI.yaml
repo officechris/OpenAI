@@ -1,8 +1,8 @@
 ---
 openapi: 3.0.0
 info:
-  title: Create an incident in pager duty with a specific title
-  description: Plugin to create an incident in pager duty with a specific title
+  title: Create a new incident through a POST request to the Pager Duty API with a specific title.
+  description: Generate a JSON Payload for a POST request to the Pager Duty API which will have a new incident created with a specific title.
   version: v1
 servers:
   - url: https://api.pagerduty.com
