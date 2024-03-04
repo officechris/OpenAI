@@ -1,0 +1,45 @@
+openapi: 3.0.0
+
+info:
+    title: Get top 10 product version distributions from Shodan
+    description: Get the top 10 version distribution of a particular piece of software from Shodan.
+    #Examples
+    #Can you find the top 10 versions of Plex Media Servers from Shodan?
+    version: "v1"
+
+servers:
+    - url: https://api.shodan.io
+
+paths:
+    /shodan/host/count:
+        get:
+            operationId: getShodanProductVersions
+            summary: Get product version distributions from Shodan.
+            parameters:
+                - in: query
+                  name: query
+                  schema:
+                      type: string
+                  required: true
+                  description: The product name to search for    
+                  name: facets
+                  schema:
+                      type: string
+                  required: true
+                  description: The facets filter
+                  default: version:10
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/getShodanIPResponse"
+
+        responses:
+          "201":
+            description: The incident object created.
+            content:
+              application/json:
+                schema:
+                  type: object
