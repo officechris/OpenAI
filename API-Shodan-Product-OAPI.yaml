@@ -21,7 +21,8 @@ paths:
                   schema:
                       type: string
                   required: true
-                  description: The product name to search for    
+                  description: The product name to search for
+                - in: query                  
                   name: facets
                   schema:
                       type: string
