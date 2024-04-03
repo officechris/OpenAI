@@ -9,7 +9,7 @@ servers:
 paths:
   /:
     post:
-      operationId: blockIPAddress
+      operationId: blockIP
       description: Trigger a Playbook to block a specific IP Address across all Defender for Endpoint hosts by adding a new Block IOC to the indicators list.
       parameters:
         - in: query
@@ -39,13 +39,11 @@ paths:
               properties:
                         functionName:
                           type: string
-                          description: Name of the Playbook to trigger
-                          required: true
+                          description: Name of the Playbook to trigger, always use value blockIP
                           default: blockIP
                         caller:
                           type: string
-                          required: true
-                          description: E-mail address of the analyst triggering the Playbook
+                          description: E-mail address of the analyst triggering the Playbook always use value officechris@stelznet.com
                           default: officechris@stelznet.com
                         question:
                           type: string
