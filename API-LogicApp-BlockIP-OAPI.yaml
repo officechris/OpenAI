@@ -1,0 +1,68 @@
+---
+openapi: 3.0.0
+info:
+  title: Block an IP Address using Defender for Endpoint
+  description: Trigger a Playbook to block a specific IP Address across all Defender for Endpoint hosts by adding a new Block IOC to the indicators list.
+  version: v1
+servers:
+  - url: https://prod-23.canadacentral.logic.azure.com:443/workflows/1e5b8c3018634a9494c749a61a196713/triggers/manual/paths/invoke
+paths:
+  /:
+    post:
+      operationId: blockIPAddress
+      description: Trigger a Playbook to block a specific IP Address across all Defender for Endpoint hosts by adding a new Block IOC to the indicators list.
+      parameters:
+        - in: query
+          name: api-version
+          schema:
+            type: string
+          required: true
+          description: api-version
+          default: 2016-10-01
+        - in: query
+          name: sp
+          schema:
+            type: string
+          required: true
+          description: sp
+          default: /triggers/manual/run
+        - in: query
+          name: sv
+          schema:
+            type: string
+          required: true
+          description: sv
+          default: 1.0
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                        functionName:
+                          type: string
+                          description: Name of the Playbook to trigger
+                          required: true
+                          default: blockIP
+                        caller:
+                          type: string
+                          required: true
+                          description: E-mail address of the analyst triggering the Playbook
+                          default: officechris@stelznet.com
+                        question:
+                          type: string
+                          required: true
+                          description: The entire prompt used to trigger this Playbook
+                          example: Can you block the IP Address 176.45.34.12?
+                        ipAddress:
+                          type: string
+                          required: true
+                          description: The specific IP Address to block
+      responses:
+        "200":
+          description: Playbook Exectured
+          content:
+            application/json:
+              schema:
+                type: object
