@@ -5,20 +5,40 @@ info:
   description: Trigger a Playbook to block a specific IP Address across all Defender for Endpoint hosts by adding a new Block IOC to the indicators list.
   version: v1
 servers:
-  - url: https://prod-23.canadacentral.logic.azure.com:443/workflows/1e5b8c3018634a9494c749a61a196713/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0
+  - url: https://prod-23.canadacentral.logic.azure.com:443/workflows/1e5b8c3018634a9494c749a61a196713/triggers/manual/paths/invoke
 paths:
   /:
     post:
       operationId: blockIPAddress
       description: Trigger a Playbook to block a specific IP Address across all Defender for Endpoint hosts by adding a new Block IOC to the indicators list.
       parameters:
+        - in: query
+          name: api-version
+          schema:
+            type: string
+          required: true
+          description: API Version, always use the value 2016-10-01
+          default: 2016-10-01
+        - in: query
+          name: sp
+          schema:
+            type: string
+          required: true
+          description: Trigger to run, always use the default value /triggers/manual/run
+          default: /triggers/manual/run
+        - in: query
+          name: sv
+          schema:
+            type: string
+          required: true
+          description: SV Version, always use the default value 1.0
+          default: 1.0
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: true
               properties:
                         functionName:
                           type: string
