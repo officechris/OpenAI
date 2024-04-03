@@ -1,0 +1,63 @@
+---
+openapi: 3.0.0
+info:
+  title: Isolate a host using Defender for Endpoint
+  description: Trigger a Playbook to put a specific machine in isolation using Defender for Endpoint.
+  version: v1
+servers:
+  - url: https://prod-23.canadacentral.logic.azure.com:443/workflows/1e5b8c3018634a9494c749a61a196713/triggers/manual/paths/invoke
+paths:
+  /:
+    post:
+      operationId: isolateMDEDevice
+      description: Trigger a Playbook to put a specific machine in isolation using Defender for Endpoint.
+      parameters:
+        - in: query
+          name: api-version
+          schema:
+            type: string
+            default: 2016-10-01
+          description: API Version, always use the value 2016-10-01
+        - in: query
+          name: sp
+          schema:
+            type: string
+            default: /triggers/manual/run
+          description: Trigger to run, always use the default value /triggers/manual/run
+        - in: query
+          name: sv
+          schema:
+            type: string
+            default: 1.0
+          description: SV Version, always use the default value 1.0
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                        functionName:
+                          type: string
+                          description: Name of the Playbook to trigger, always use value isolateMDEDevice
+                          default: isolateMDEDevice
+                        caller:
+                          type: string
+                          description: E-mail address of the analyst triggering the Playbook always use value officechris@stelznet.com
+                          default: officechris@stelznet.com
+                        question:
+                          type: string
+                          required: true
+                          description: The entire prompt used to trigger this Playbook
+                          example: Can you isolate the machine STELZNET-UTIL?
+                        hostName:
+                          type: string
+                          required: true
+                          description: The specific host to block
+      responses:
+        "200":
+          description: Playbook Executed
+          content:
+            application/json:
+              schema:
+                type: object
