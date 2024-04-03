@@ -16,23 +16,20 @@ paths:
           name: api-version
           schema:
             type: string
-          required: true
+            default: 2016-10-01
           description: API Version, always use the value 2016-10-01
-          default: 2016-10-01
         - in: query
           name: sp
           schema:
             type: string
-          required: true
+            default: /triggers/manual/run
           description: Trigger to run, always use the default value /triggers/manual/run
-          default: /triggers/manual/run
         - in: query
           name: sv
           schema:
             type: string
-          required: true
+            default: 1.0
           description: SV Version, always use the default value 1.0
-          default: 1.0
       requestBody:
         required: true
         content:
