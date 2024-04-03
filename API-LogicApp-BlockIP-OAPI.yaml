@@ -18,6 +18,7 @@ paths:
           application/json:
             schema:
               type: object
+              required: true
               properties:
                         functionName:
                           type: string
